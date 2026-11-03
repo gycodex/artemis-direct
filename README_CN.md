@@ -47,8 +47,8 @@ Direct 不是换了名称的 Flash/Pro 自主任务。交互式测试需要宿�
 下面使用 PowerShell，并克隆包含本文 Direct 扩展的 fork：
 
 ```powershell
-git clone https://github.com/gycodex/artemis.git
-Set-Location ".\artemis"
+git clone https://github.com/gycodex/artemis-direct.git
+Set-Location ".\artemis-direct"
 uv sync
 adb devices -l
 ```
@@ -81,19 +81,6 @@ uv run artemis mcp --type direct --device "127.0.0.1:7555" --install claude
 ```powershell
 uv run artemis mcp --type direct --device "127.0.0.1:7555" --generate-config codex
 ```
-
-**当前 Codex 安装器注意事项：**生成的 `enabled_tools` 白名单仍只包含原有 Direct 工具，尚未包含下面六个新增工具。重新加载前，请在生成的 Artemis 服务配置中，将这些名称补充到原有列表：
-
-```text
-recording_start
-recording_stop
-click_element
-wait_for_element
-wait_for_app
-run_case
-```
-
-保留列表中的原有项。再次运行安装器可能重新生成旧列表，安装后需要复核。此限制影响宿主显示的工具，不影响服务端或用例 CLI 中的功能。
 
 安装完成后，重新加载 MCP 服务或重启宿主。Direct 每个服务进程绑定一台设备；修改 `--device` 或 `ARTEMIS_DEVICE_ID` 后，需要重启该服务。
 

@@ -192,6 +192,14 @@ def main() -> int:
     if args.failed_from:
         previous = json.loads(args.failed_from.read_text(encoding="utf-8"))
         names = {row["name"] for row in previous if row["status"] != "passed"}
+        if not names:
+            if not previous:
+                parser.error("Previous suite contains no results")
+            print("No failed cases to rerun.")
+            return 0
+        missing = names.difference(case["name"] for case in cases)
+        if missing:
+            parser.error("Previous failed cases missing from suite: " + ", ".join(sorted(missing)))
         cases = [case for case in cases if case["name"] in names]
     for value in args.param:
         if "=" not in value:

@@ -253,6 +253,8 @@ def test_cli_mcp_generate_direct_config_for_codex_and_claude():
     assert "read_logcat" in codex["enabled_tools"]
     assert "session_start" in codex["enabled_tools"]
     assert "session_finish" in codex["enabled_tools"]
+    assert {"recording_start", "recording_stop", "click_element", "wait_for_element",
+            "wait_for_app", "run_case"}.issubset(codex["enabled_tools"])
     assert "mobile_run_task" not in codex["enabled_tools"]
 
     claude = _get_config_snippet("claude", "python", "/project", "direct")["mcpServers"]["artemis"]

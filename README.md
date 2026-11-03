@@ -47,8 +47,8 @@ Optional:
 The examples below use PowerShell and this fork, which contains the Direct extensions described here.
 
 ```powershell
-git clone https://github.com/gycodex/artemis.git
-Set-Location ".\artemis"
+git clone https://github.com/gycodex/artemis-direct.git
+Set-Location ".\artemis-direct"
 uv sync
 adb devices -l
 ```
@@ -81,19 +81,6 @@ The installer updates the host's MCP configuration **and installs Artemis testin
 ```powershell
 uv run artemis mcp --type direct --device "127.0.0.1:7555" --generate-config codex
 ```
-
-**Current Codex installer caveat:** its generated `enabled_tools` list contains the original Direct tools but omits six newer tools. Before reloading, add the following names to the existing list in the generated Artemis server configuration:
-
-```text
-recording_start
-recording_stop
-click_element
-wait_for_element
-wait_for_app
-run_case
-```
-
-Keep the existing entries. Re-running the installer can regenerate the older list, so check it again after reinstalling. This affects host exposure, not the availability of these tools in the server or case CLI.
 
 Reload the MCP server or restart your host after installation. Direct binds one device per server process; changing `--device` or `ARTEMIS_DEVICE_ID` requires restarting that server.
 

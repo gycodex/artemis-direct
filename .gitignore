@@ -116,3 +116,6 @@ live_screenshot*.png
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local WeChat upload derivatives, draft backups, and account-specific state
+/docs/article-assets/*/wechat-upload/

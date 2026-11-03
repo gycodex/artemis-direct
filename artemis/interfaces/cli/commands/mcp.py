@@ -67,6 +67,12 @@ ARTEMIS_DIRECT_MCP_TOOLS = (
     "session_checkpoint",
     "session_status",
     "session_finish",
+    "recording_start",
+    "recording_stop",
+    "click_element",
+    "wait_for_element",
+    "wait_for_app",
+    "run_case",
 )
 
 # Backwards-compatible import for integrations that used the old constant.
